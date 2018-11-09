@@ -1,0 +1,7 @@
+[package]
+name = "run_velvet"
+version = "0.1.0"
+authors = ["Ken Youens-Clark <kyclark@email.arizona.edu>"]
+
+[dependencies]
+clap ="~2.32"

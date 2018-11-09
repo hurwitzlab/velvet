@@ -5,10 +5,10 @@ IMG = $(APP).img
 DEF = image.def
 
 img:
-	#rm -f $(IMG)
-	#sudo $(SINGULARITY) create --size 1024 $(IMG)
-	#sudo $(SINGULARITY) bootstrap $(IMG) $(DEF)
-	sudo $(SINGULARITY) build -s $(IMG) $(DEF)
+	rm -f $(IMG)
+	sudo $(SINGULARITY) create --size 1024 $(IMG)
+	sudo $(SINGULARITY) bootstrap $(IMG) $(DEF)
+	#sudo $(SINGULARITY) build $(IMG) $(DEF)
 
 run:
 	$(SINGULARITY) run $(IMG)

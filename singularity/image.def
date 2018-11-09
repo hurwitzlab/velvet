@@ -1,12 +1,22 @@
-BootStrap: docker
+Bootstrap: yum
+OSVersion: 7
+MirrorURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/os/$basearch/
+Include: yum
+
+#BootStrap: docker
 #From: ubuntu:latest
-From: biodckrdev/velvet
+
+%environment
+    PATH=/app/velvet/scripts:$PATH
 
 %runscript
-    exec /usr/local/bin/perl /usr/local/velvet/stampede/run-velvet.pl "$@"
+    exec run-velvet.pl "$@"
 
 %post
-    apt-get update -y
+    yum update -y
+    yum install git wget epel-release gcc zlib-devel gzip make -y
+
+    #apt-get update -y
     #apt-get install -y git wget build-essential 
 
     #mkdir /app
@@ -15,6 +25,7 @@ From: biodckrdev/velvet
     #tar xvf velvet_1.2.10.tgz
     #(cd velvet_1.2.10 && make && cp velveth velvetg /usr/local/bin)
 
+    cd /app
     #git clone https://github.com/hurwitzlab/velvet.git
 
     #wget ftp://cpan.cs.utah.edu/CPAN/src/perl-5.24.1.tar.gz
@@ -22,6 +33,6 @@ From: biodckrdev/velvet
     #(cd perl-5.24.1 && sh Configure -des -Dprefix=/usr/local && make && make install)
     #/usr/local/bin/cpan -i Data::Dump File::Find::Rule
 
-    mkdir /home1
-    mkdir /work
-    mkdir /scratch
+    #mkdir /home1
+    #mkdir /work
+    #mkdir /scratch
